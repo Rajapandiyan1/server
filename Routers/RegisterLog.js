@@ -22,7 +22,12 @@ Router.post('/register',async (req,res,next)=>{
                let data= await new UserModel({fullname,email,RegisterId:_id,topics:[]}).save();
                let jwts =await jwt.sign({fullname,email,idUser:data._id},process.env.JWT_SECRET);
                if(!data) return res.send({ok:false,message:'Sorry Register Failed'});
-             return  await res.cookie('myoption',jwts,{maxAge:1000*60*60*24*7}).send({url:`Dashboard/${data.fullname}/${data._id}`,ok:true,message:'Register successfully'});
+             return  await res.cookie('myoption',jwts,{
+                httpOnly: true,
+                secure: false, 
+                sameSite: 'none',      // Required for cross-origin cookies
+                maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
+              }).send({url:`Dashboard/${data.fullname}/${data._id}`,ok:true,message:'Register successfully'});
                
            }else{
           return  res.send({ok:false,message:'sorry server side register some problem'})
