@@ -27,6 +27,6 @@ app.use(LogReg);
 app.use(Homedatas)
 app.use(ForgotRoute);
 app.get('/',(req,res,next)=>{
-  res.send({ok:true,message:"myoption",cookie:req.cookies['myoption']})
+  res.send({ok:true,message:"myoption",cookie:req.cookies['myoption']|| 'ok'})
 })
 app.listen(3000);
