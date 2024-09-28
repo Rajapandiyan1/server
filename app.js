@@ -27,25 +27,6 @@ app.use(LogReg);
 app.use(Homedatas)
 app.use(ForgotRoute);
 app.get('/',(req,res,next)=>{
-  res.send({ok:true,message:"myoption"})
+  res.send({ok:true,message:"myoption",cookie:req.cookies['myoption']})
 })
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname,'view', 'build', 'index.html'));
-//   });
-//   app.get('myoption/',(req,res,next)=>{
-//     let cookie = req.cookies['myoption'] || null;
-//     if(!cookie){
-//         return res.status(302).redirect('/register');
-//     }
-//     let verify = verifyToken(cookie)
-//     console.log(verify)
-//     if(verify.ok)res.status(302).redirect('/dashboard');
-//     else res.status(302).redirect('/register')
-// })
-// app.get('/authentication',(req,res,next)=>{
-// })
-// app.use((req,res,next)=>{
-    
-//     res.status(404).send('Page not found')
-// });
 app.listen(3000);
