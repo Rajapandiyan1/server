@@ -11,7 +11,7 @@ const Homedatas=require('./Routers/HomeRoute');
 const {verifyAuthPerson} = require('./Auth/tokenAuthen');
 require('dotenv').config(); 
 
-  app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+  app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
   
 app.use(cookie());
 app.use(body.urlencoded({extended:true}));
@@ -48,4 +48,4 @@ app.get('/',(req,res,next)=>{
     
 //     res.status(404).send('Page not found')
 // });
-app.listen(3001);
+app.listen(3000);
