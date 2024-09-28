@@ -13,7 +13,6 @@ async function verifyApi(req,res,next) {
         if(!cookie) return res.send({ok:false,message:'sorry ,you aren`t athuentication person ',authen:false});
         let verify=await verifyToken(cookie);
         let userId=verify.data.idUser;
-        if(!verify.ok) return res.send(verify)
         let valid=await UserModel.findById({_id:userId});
         if(!valid)return res.status(401).send({ok:false,message:'sorry you aren`t athuentication person ',authen:false})
         if(!verify.ok) return res.send({ok:false,message:'you aren`t athuentication person , sorry',authen:false});
