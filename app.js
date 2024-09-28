@@ -7,7 +7,7 @@ const cors = require('cors')
 const cookie = require('cookie-parser')
 const LogReg = require('./Routers/RegisterLog');
 const ForgotRoute =require('./Routers/ForgotRoute');
-const Homedatas=require('../BackEnd/Routers/HomeRoute');
+const Homedatas=require('./Routers/HomeRoute');
 const {verifyAuthPerson} = require('./Auth/tokenAuthen');
 require('dotenv').config(); 
 
