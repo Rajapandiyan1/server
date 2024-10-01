@@ -11,7 +11,7 @@ const Homedatas=require('./Routers/HomeRoute');
 const {verifyAuthPerson} = require('./Auth/tokenAuthen');
 require('dotenv').config(); 
 
-  app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+  app.use(cors({ origin: 'http://localhost:3001',methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],credentials:true }));
   
 app.use(cookie());
 app.use(body.urlencoded({extended:true}));
@@ -27,6 +27,8 @@ app.use(LogReg);
 app.use(Homedatas)
 app.use(ForgotRoute);
 app.get('/',(req,res,next)=>{
+  console.log(req.cookies['myoption']);
+  
   res.send({ok:true,message:"myoption",cookie:req.cookies['myoption']|| 'ok'})
 })
 app.listen(3000);
