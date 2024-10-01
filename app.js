@@ -11,7 +11,7 @@ const Homedatas=require('./Routers/HomeRoute');
 const {verifyAuthPerson} = require('./Auth/tokenAuthen');
 require('dotenv').config(); 
 
-  app.use(cors({ origin: 'http://localhost:3001',methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],credentials:true }));
+  app.use(cors({ origin: 'http://localhost:3000',methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],credentials:true }));
   
 app.use(cookie());
 app.use(body.urlencoded({extended:true}));
@@ -23,6 +23,8 @@ await mongoose.connect(process.env.DB_URL).then(()=>{
   // process.exit(1)  
 })
 })();
+
+
 app.use(LogReg);
 app.use(Homedatas)
 app.use(ForgotRoute);

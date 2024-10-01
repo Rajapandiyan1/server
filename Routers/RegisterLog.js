@@ -67,8 +67,13 @@ Router.post('/login',async (req,res,next)=>{
             if(err){ return res.send({ok:false,message:'sorry password wrong , please check your password'});}
             let dataUser =await UserModel.findOne({RegisterId:data.id});
             if(result) {
-                let jwts=await jwt.sign({email:data.email,idUser:dataUser._id},process.env.JWT_SECRET,{expiresIn:'2d'});
-                res.cookie('myoption',jwts,{ httpOnly: true, secure: false })
+                let jwts=await jwt.sign({email:data.email,idUser:dataUser._id},process.env.JWT_SECRET,{expiresIn:'7d'});
+                res.cookie('myoption',jwts, {
+                    httpOnly: true,
+                    secure: false, 
+                    sameSite: 'none',      // Required for cross-origin cookies
+                    maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
+                  })
                 return res.send({ok:true,url:`/Dashboard/${data.fullname}/${dataUser._id}`})
                 
             } else{

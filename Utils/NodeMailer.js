@@ -29,7 +29,12 @@ async function sendmail(req,res,otp,ids) {
         
             if(err) return res.send({ok:false,message:err});
     
-              return  res.cookie('forgot',await jwt.sign({ids:ids},process.env.JWT_SECRET)).status(200).send({ok:true,registerId:ids});
+              return  res.cookie('forgot',await jwt.sign({ids:ids},process.env.JWT_SECRET),{
+                httpOnly: true,
+                secure: false, 
+                sameSite: 'none',      // Required for cross-origin cookies
+                maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
+              }).status(200).send({ok:true,registerId:ids});
         })
     }catch(e){
         res.send({ok:false,message:e.message})

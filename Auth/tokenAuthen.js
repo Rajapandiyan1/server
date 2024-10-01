@@ -3,7 +3,7 @@ const UserModel = require('../Model/UserModel');
 // authen peroson only check true or false
 function verifyToken(token) {
     if(!token) return {ok:false,authen:false,message:'athuentication personal only access this url'}
-    let verify = jwt.verify(token,'raja');
+    let verify = jwt.verify(token,process.env.JWT_SECRET);
     if(verify) return {ok:true,authen:true,message:'athuentication person',data:verify};
     else return {ok:false,authen:false,message:'athuentication personal only access this url'};
 }
