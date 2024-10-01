@@ -10,7 +10,7 @@ function verifyToken(token) {
 async function verifyApi(req,res,next) {
     try{
         let cookie =await req.cookies['myoption'] || null;
-        if(!cookie) return res.send({ok:false,message:'sorry ,you aren`t athuentication person ',authen:false});
+        if(!cookie) return res.send({ok:false,message:'sorry ,you aren`t athuentication persOn ',authen:false});
         let verify=await verifyToken(cookie);
         let userId=verify.data.idUser;
         let valid=await UserModel.findById({_id:userId});
