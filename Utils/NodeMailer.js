@@ -31,7 +31,7 @@ async function sendmail(req,res,otp,ids) {
     
               return  res.cookie('forgot',await jwt.sign({ids:ids},process.env.JWT_SECRET),{
                 httpOnly: true,
-                secure: false, 
+                secure: true, 
                 sameSite: 'none',      // Required for cross-origin cookies
                 maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
               }).status(200).send({ok:true,registerId:ids});

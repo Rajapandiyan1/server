@@ -24,7 +24,7 @@ Router.post('/register',async (req,res,next)=>{
                if(!data) return res.send({ok:false,message:'Sorry Register Failed'});
              return  await res.cookie('myoption',jwts,{
                 httpOnly: true,
-                secure: false, 
+                secure: true, 
                 sameSite: 'none',      // Required for cross-origin cookies
                 maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
               }).send({url:`Dashboard/${data.fullname}/${data._id}`,ok:true,message:'Register successfully'});
@@ -70,7 +70,7 @@ Router.post('/login',async (req,res,next)=>{
                 let jwts=await jwt.sign({email:data.email,idUser:dataUser._id},process.env.JWT_SECRET,{expiresIn:'7d'});
                 res.cookie('myoption',jwts, {
                     httpOnly: true,
-                    secure: false, 
+                    secure: true, 
                     sameSite: 'none',      // Required for cross-origin cookies
                     maxAge: 24 * 60 * 60 * 1000 * 7  // Cookie will expire in 1 day
                   })
