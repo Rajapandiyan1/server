@@ -12,7 +12,7 @@ const {verifyAuthPerson} = require('./Auth/tokenAuthen');
 require('dotenv').config(); 
 
 app.use(cookie());
-  app.use(cors({ origin: 'https://myoption-git-master-rajapandiyan1s-projects.vercel.app',methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],credentials:true }));
+  app.use(cors({ origin: 'https://myoption-u4kk-git-master-rajapandiyan1s-projects.vercel.app',methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],credentials:true }));
   
 app.use(body.urlencoded({extended:true}));
 app.use(body.json());
